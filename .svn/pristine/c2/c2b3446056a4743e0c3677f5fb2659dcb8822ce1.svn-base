@@ -1,0 +1,147 @@
+<template>
+    <div class="content">
+        <dl class="dl-list">
+            <dt class="col-1">
+                <i class="icon-dt"></i>
+            </dt>
+            <dd>
+                <p class="fs-4">公园开闭园时间 ：</p>
+                <p>
+                    夏季：<br /> 4月1日-10月31日 开园：6:00，止票：21:00，静园：22:00
+                </p>
+                <p>
+                    冬季： <br />11月1日-3月31日 开园：6:00，止票：20:00，静园：21:00
+                </p>
+            </dd>
+            <dt class="col-1">
+                <i class="icon-dt"></i>
+            </dt>
+            <dd>
+                <p class="fs-4">公园场馆运营 ：</p>
+                <p>
+                    夏季： <br />4月1日-10月31日 开园：6:00，止票：21:00，静园：22:00
+                </p>
+                <p>
+                    冬季： <br />11月1日-3月31日 开园：6:00，止票：20:00，静园：21:00
+                </p>
+            </dd>
+            <dt class="col-1">
+                <i class="icon-dt"></i>
+            </dt>
+            <dd>
+                <p class="fs-4">公园设备运营 ：</p>
+                <table class="table-bordered">
+                    <thead>
+                        <tr>
+                            <th>项目名称</th>
+                            <th>开放时间</th>
+                            <th>关闭时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>谷木游龙</td>
+                            <td>10:00</td>
+                            <td>19:00</td>
+                        </tr>
+                        <tr>
+                            <td>谷木游龙</td>
+                            <td>10:00</td>
+                            <td>19:00</td>
+                        </tr>
+                        <tr>
+                            <td>谷木游龙</td>
+                            <td>10:00</td>
+                            <td>19:00</td>
+                        </tr>
+                        <tr>
+                            <td>谷木游龙</td>
+                            <td>10:00</td>
+                            <td>19:00</td>
+                        </tr>
+                        <tr>
+                            <td>谷木游龙</td>
+                            <td>10:00</td>
+                            <td>19:00</td>
+                        </tr>
+                        <tr>
+                            <td>谷木游龙</td>
+                            <td>10:00</td>
+                            <td>19:00</td>
+                        </tr>
+                        <tr>
+                            <td>谷木游龙</td>
+                            <td>10:00</td>
+                            <td>19:00</td>
+                        </tr>
+                        <tr>
+                            <td>谷木游龙</td>
+                            <td>10:00</td>
+                            <td>19:00</td>
+                        </tr>
+                        <tr>
+                            <td>谷木游龙</td>
+                            <td>10:00</td>
+                            <td>19:00</td>
+                        </tr>
+                        <tr>
+                            <td>谷木游龙</td>
+                            <td>10:00</td>
+                            <td>19:00</td>
+                        </tr>
+                        <tr>
+                            <td>谷木游龙</td>
+                            <td>10:00</td>
+                            <td>19:00</td>
+                        </tr>
+                        <tr>
+                            <td>谷木游龙</td>
+                            <td>10:00</td>
+                            <td>19:00</td>
+                        </tr>
+                        <tr>
+                            <td>谷木游龙</td>
+                            <td>10:00</td>
+                            <td>19:00</td>
+                        </tr>
+                        <tr>
+                            <td>谷木游龙</td>
+                            <td>10:00</td>
+                            <td>19:00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </dd>
+            <dt class="col-1">
+                <i class="icon-dt"></i>
+            </dt>
+            <dd>
+                <p class="fs-4">观光电瓶车服务 ：</p>
+                <p>
+                    运营时间：冬季：9:30-16:15　夏季：9:30-16:45
+
+                </p>
+            </dd>
+            <dt class="col-1">
+                <i class="icon-dt"></i>
+            </dt>
+            <dd>
+                <p class="fs-4">大型活动时间表 ：</p>
+                <p>
+                    《小雨夜》： 08:00-19:00 场地 ：中央剧场 <br>
+                    <a href="">查看更多</a>
+                </p>
+            </dd>
+        </dl>
+    </div>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style scoped>
+
+</style>

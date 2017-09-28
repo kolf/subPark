@@ -1,0 +1,161 @@
+{
+    "data": [
+        {
+            "name": "游园攻略",
+            "path": "/raiders",
+            "icon": "noun__cc3",
+            "desc": "游园攻略游园攻略游园攻略游园攻略游园攻略",
+            "navImage": "/static/nb1.jpg",
+            "children": [
+                {
+                    "name": "开闭园时间",
+                    "path": "/raiders/openTime"
+                },
+                {
+                    "name": "线路推荐",
+                    "path": "/raiders/recommend"
+                },
+                {
+                    "name": "景点分布",
+                    "path": "/raiders/attractions"
+                },
+                {
+                    "name": "园内交通",
+                    "path": "/raiders/traffic"
+                },
+                {
+                    "name": "摊位分布",
+                    "path": "/raiders/stalls"
+                }
+            ]
+        },
+        {
+            "name": "在线预定",
+            "path": "/booking",
+            "icon": "noun__cc2",
+            "desc": "在线预定在线预定在线预定在线预定在线预定",
+            "navImage": "/static/nb2.jpg",
+            "children": [
+                {
+                    "name": "门票购买",
+                    "path": "/booking/entrance"
+                },
+                {
+                    "name": "游乐票预订",
+                    "path": "/booking/amusement"
+                },
+                {
+                    "name": "其它票务",
+                    "path": "/booking/other"
+                },
+                {
+                    "name": "场地预订",
+                    "path": "/booking/site"
+                }
+            ]
+        },
+        {
+            "name": "活动指南",
+            "path": "/activity",
+            "icon": "huodongzhinan",
+            "desc": "活动指南活动指南活动指南活动指南",
+            "navImage": "/static/nb3.jpg",
+            "children": [
+                {
+                    "name": "活动资讯",
+                    "path": "/activity/news"
+                },
+                {
+                    "name": "全年固定活动",
+                    "path": "/activity/projects"
+                }
+            ]
+        },
+        {
+            "name": "游客服务",
+            "path": "/service",
+            "icon": "youkezixun",
+            "desc": "游客服务游客服务游客服务游客服务游客服务游客服务",
+            "navImage": "/static/nb4.jpg",
+            "children": [
+                {
+                    "name": "公园位置及交通",
+                    "path": "/service/location"
+                },
+                {
+                    "name": "入园须知",
+                    "path": "/service/notice"
+                },
+                {
+                    "name": "门区分布",
+                    "path": "/service/doorArea"
+                },
+                {
+                    "name": "服务电话",
+                    "path": "/service/tel"
+                },
+                {
+                    "name": "停车场信息",
+                    "path": "/service/parking"
+                },
+                {
+                    "name": "游客咨询",
+                    "path": "/service/help"
+                },
+                {
+                    "name": "游客建议",
+                    "path": "/service/advice"
+                },
+                {
+                    "name": "失误招领",
+                    "path": "/service/lost"
+                },
+                {
+                    "name": "周边服务",
+                    "path": "/service/periphery"
+                },
+                {
+                    "name": "医务室信息",
+                    "path": "/service/infirmary"
+                }
+            ]
+        },
+        {
+            "name": "关于",
+            "path": "/ours",
+            "icon": "women",
+            "desc": "关于关于关于关于关于关于关于关于关于关于",
+            "navImage": "/static/nb5.jpg",
+            "children": [
+                {
+                    "name": "公园介绍",
+                    "path": "/ours/introduction"
+                },
+                {
+                    "name": "新闻公告",
+                    "path": "/ours/news"
+                },
+                {
+                    "name": "人才招聘",
+                    "path": "/ours/jobs"
+                },
+                {
+                    "name": "招商合作",
+                    "path": "/ours/cooperation"
+                },
+                {
+                    "name": "欢乐分享",
+                    "path": "/ours/share"
+                },
+                {
+                    "name": "友情链接",
+                    "path": "/ours/friends"
+                },
+                {
+                    "name": "联系我们",
+                    "path": "/ours/contact"
+                }
+            ]
+        }
+    ]
+}

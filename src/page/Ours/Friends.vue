@@ -1,0 +1,68 @@
+<template>
+    <div>
+        <div class="page-header">
+            <h2 class="page-title font-400 pad-bottom-10">友情链接
+                <small>FRIENDSHIP LINK</small>
+            </h2>
+        </div>
+        <div class="pad-top-40">
+            <dl class="dl-list">
+                <dt class="col-1">
+                    <i class="icon-dt"></i>
+                </dt>
+                <dd class="fs-4">
+                    <a href="">朝阳区人民政府</a>
+                </dd>
+                <dt class="col-1">
+                    <i class="icon-dt"></i>
+                </dt>
+                <dd class="fs-4">
+                    <a href="">朝阳区纪检监察网</a>
+                </dd>
+                 <dt class="col-1">
+                    <i class="icon-dt"></i>
+                </dt>
+                <dd class="fs-4">
+                    <a href="">奥林匹克森林公园</a>
+                </dd>
+                 <dt class="col-1">
+                    <i class="icon-dt"></i>
+                </dt>
+                <dd class="fs-4">
+                    <a href="">朝阳规划艺术馆</a>
+                </dd>
+                 <dt class="col-1">
+                    <i class="icon-dt"></i>
+                </dt>
+                <dd class="fs-4">
+                    <a href="">索尼探梦科普乐园</a>
+                </dd>
+                  <dt class="col-1">
+                    <i class="icon-dt"></i>
+                </dt>
+                <dd>
+                    <a href="" class="fs-4 block pad-bottom-30">蓝色港湾</a>
+                    <p>温馨提示：上述网站不由朝阳公园维护，并且朝阳公园保密声明并不适用于上述网站。 <br>
+此链接仅为方便您访问而提供，朝阳公园不能保证该链接的有效性，也不为您在此非朝
+阳公园站点上获得的任何信息或联系方式的真实性负责。</p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style lang="scss" scoped>
+.dl {
+    &-list {
+        &>dd {
+            padding-bottom: 15px
+        }
+    }
+}
+</style>

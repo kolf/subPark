@@ -1,0 +1,69 @@
+<template>
+    <div>
+        <div class="page-header">
+            <h2 class="page-title font-400 pad-bottom-10">欢乐分享
+                <small>PARK INTRODUCTION</small>
+            </h2>
+        </div>
+        <div class="pad-top-40">
+            <ul class="imgtext-list row list-unstyled text-center">
+            <li class="col-3" v-for="(item, index) in gallerys">
+                <div>
+                    <img @click="openGallery(index)" :src="item.src" :alt="item.title" class="img-fluid">
+                    <p class="pad-top-10">{{item.title}}</p>
+                </div>
+            </li>
+        </ul>
+        </div>
+        <lightbox :title="gallerys[galleryIndex].title" :desc="gallerys[galleryIndex].desc" :images="gallerys[galleryIndex].images" ref="lightbox" :siteLoading="loadingImg" :show-caption="true" :nThumbs="nThumbs"></lightbox>
+    </div>
+</template>
+
+<script>
+import { data as gallerys } from '@/data/attractions'
+import Lightbox from '@/components/Lightbox'
+import { mapActions, mapGetters } from 'vuex'
+// import loadingImg from '@/assets/siteloading.gif'
+
+export default {
+    components: {
+        Lightbox
+    },
+    data() {
+        return {
+            galleryIndex: 0,
+            gallerys,
+            loadingImg: require('static/loading.gif')
+        }
+    },
+    methods: {
+        openGallery(index) {
+            console.log(this.gallery)
+            this.galleryIndex = index
+            this.$refs.lightbox.showImage(index)
+        }
+    },
+    computed: {
+        ...mapGetters({
+            device: 'device',
+        }),
+        nThumbs() {
+            return this.device.isMobile ? 3 : 6
+        }
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+.imgtext-list {
+    margin-left: -10px;
+    margin-right: -10px;
+    [class^=col] {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    img {
+        width: 100%
+    }
+}
+</style>

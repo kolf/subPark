@@ -1,0 +1,45 @@
+<template>
+    <div class="main pad-top-40">
+        <div class="container">
+            <div class="page-header">
+            <h2 class="page-title font-400 pad-bottom-10">入园须知
+                <small>ADMISSION NOTICE</small>
+            </h2>
+        </div>
+        <div class="pad-top-40">
+            <dl class="dl-list">
+                <dt class="col-1"><i class="icon-dt"></i></dt>
+                <dd>1、入园时请您主动向工作人员出示限本公园使用的门票、月票、年票及其他有效证件，检票实行一人一票，每张门票仅限一次性使用，享受免票规定的仅限持证本人和1.2米以下儿童。</dd>
+                <dt class="col-1"><i class="icon-dt"></i></dt>
+                <dd>2、为了游人安全，本公园内不得燃放烟花爆竹及燃烧其它物品，禁止携带易燃易爆、管制刀具等危险品入园，不准在园内滑旱冰、滑板、遛宠物。除残疾人专用轮椅和儿童专用的小轮车外其它车辆未经批准一律不准入园。</dd>
+                <dt class="col-1"><i class="icon-dt"></i></dt>
+                <dd>3、为创造文明和谐的游园环境，园内禁止折花摘果、毁坏公共设施、随地吐痰、乱扔废弃物，严禁在公园内散发、涂写、张贴悬挂任何形式的留言、广告及宣传品。</dd>
+                <dt class="col-1"><i class="icon-dt"></i></dt>
+                <dd>4、园内未经批准不得擅自组织集会、游行及演讲等妨碍游客正常游园秩序的一切活动，未经允许不得贩卖和陈列物品，或从事以商业为目的的摄影、摄像等各种经营活动。</dd>
+                <dt class="col-1"><i class="icon-dt"></i></dt>
+                <dd>5、公园内如有发现与文明游园不相符的一切不良行为、并不听劝告者，公园有权要求游客无条件离开公园，如有在园内进行打架、斗殴、偷窃、寻衅滋事等违法犯罪活动，安保部门及工作人员有权现场制止并协助公安部门依法处置。</dd>
+                <dt class="col-1"><i class="icon-dt"></i></dt>
+                <dd>6、如遇突发事件，请不要慌乱并服从工作人员指挥，有序撤离事发现场。</dd>
+                <dt class="col-1"><i class="icon-dt"></i></dt>
+                <dd>7、当公园内因举办重要活动或大型活动有特殊入园规定时，请按临时入园须知提示入园。</dd>
+            </dl>
+        </div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style lang="scss" scoped>
+.dl {
+    &-list {
+        &>dd {
+            padding-bottom: 15px
+        }
+    }
+}
+</style>

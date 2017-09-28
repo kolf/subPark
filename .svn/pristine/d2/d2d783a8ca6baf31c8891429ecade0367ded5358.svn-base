@@ -1,0 +1,105 @@
+<template>
+    <div>
+        <div class="page-header">
+            <div class="row">
+                <div class="col-4 pad-top-15">
+                    <v-select :options="dateOptions" class="page-header__select" placeholder="更多资讯" @change="query" :value="dateVal"></v-select>
+                </div>
+                <div class="col-4 text-center">
+                    <h2 class="page-title font-400 pad-bottom-10">新闻公告
+                        <small>IN THE NEWS</small>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <ul class="imgtext-list list-unstyled">
+            <li class="row" v-for="(item, index) in news">
+                <div class="col-3-m pad-bottom-10">
+                    <router-link :to="'/ours/news/' + item.id" class="img-transition block">
+                        <img :src="item.src" class="img-fluid" :alt="item.title">
+                    </router-link>
+                </div>
+                 <div class="col-9-m">
+                    <h4 class="pad-bottom-20">
+                        <router-link :to="'/ours/news/' + item.id">{{item.title}}</router-link>
+                    </h4>
+                    <p>{{item.desc}}</p>
+                    <p class="date pad-top-20">{{item.date}}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</template>
+
+<script>
+import { data as news } from '@/data/news'
+import Select from '@/components/Select'
+
+export default {
+    components: {
+        VSelect: Select
+    },
+    data() {
+        return {
+            news,
+            dateOptions: [{
+                label: '2017年1月-3月',
+                value: 1
+            }, {
+                label: '2017年4-5月',
+                value: 2
+            }, {
+                label: '2016年4-5月',
+                value: 3
+            }, {
+                label: '2017年6-8月',
+                value: 4
+            }, {
+                label: '2016年6-8月',
+                value: 5
+            }, {
+                label: '2017年9-12月',
+                value: 6
+            }, {
+                label: '2016年1-3月',
+                value: 7
+            }],
+            dateVal: 0
+        }
+    },
+    methods: {
+        query(val) {
+            console.log(val)
+            this.dateVal = val
+        }
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+@import "~@/sass/base/_mixins";
+
+.imgtext-list {
+    &>li {
+        padding: 40px 0;
+        border-bottom: 1px solid #eee;
+        &>.col-3 {
+            padding-left: 0;
+        }
+        p {
+            margin: 0
+        }
+    }
+}
+
+@include breakpoint(m) {
+    .imgtext-list {
+        &>li {
+            padding: 50px 0;
+            .date {
+                padding-top: 60px
+            }
+        }
+    }
+}
+</style>

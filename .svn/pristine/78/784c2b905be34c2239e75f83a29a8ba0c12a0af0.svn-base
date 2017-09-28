@@ -1,0 +1,139 @@
+import Vue from 'vue'
+import Router from 'vue-router'
+import { loadView } from '@/utils/lazyLoading'
+
+Vue.use(Router)
+
+export default new Router({
+  linkActiveClass: 'active',
+  scrollBehavior: () => ({ y: 0 }),
+  routes: [
+    {
+      path: '/',
+      component: loadView('Home', true)
+    },
+    {
+      path: '/raiders',
+      component: loadView('Raiders', true),
+      redirect: '/raiders/openTime',
+      children: [{
+        path: 'openTime',
+        component: loadView('Raiders/OpenTime')
+      }, {
+        path: 'recommend',
+        component: loadView('Raiders/Recommend')
+      }, {
+        path: 'attractions',
+        component: loadView('Raiders/Attractions')
+      }, {
+        path: 'traffic',
+        component: loadView('Raiders/Traffic')
+      }, {
+        path: 'stalls',
+        component: loadView('Raiders/Stalls')
+      }]
+    }, {
+      path: '/booking',
+      component: loadView('Booking', true),
+      redirect: '/booking/entrance',
+      children: [{
+        path: 'entrance',
+        component: loadView('Booking/Entrance')
+      }, {
+        path: 'amusement',
+        component: loadView('Booking/Amusement')
+      }, {
+        path: 'other',
+        component: loadView('Booking/Other')
+      }, {
+        path: 'site',
+        component: loadView('Booking/Site')
+      }]
+    }, {
+      path: '/activity',
+      component: loadView('Activity', true),
+      redirect: '/activity/news',
+      children: [{
+        path: 'news',
+        component: loadView('Activity/News')
+      }, {
+        path: 'projects',
+        component: loadView('Activity/Projects')
+      }]
+    }, {
+      path: '/service',
+      component: loadView('Service', true),
+      redirect: '/service/location',
+      children: [{
+        path: 'location',
+        component: loadView('Service/Location')
+      }, {
+        path: 'notice',
+        component: loadView('Service/Notice')
+      }, {
+        path: 'monthly',
+        component: loadView('Service/Monthly')
+      }, {
+        path: 'doorArea',
+        component: loadView('Service/DoorArea')
+      }, {
+        path: 'tel',
+        component: loadView('Service/Tel')
+      }, {
+        path: 'parking',
+        component: loadView('Service/Parking')
+      }, {
+        path: 'help',
+        component: loadView('Service/Help')
+      }, {
+        path: 'advice',
+        component: loadView('Service/Advice')
+      }, {
+        path: 'lost',
+        component: loadView('Service/Lost')
+      }, {
+        path: 'periphery',
+        component: loadView('Service/Periphery')
+      }, {
+        path: 'infirmary',
+        component: loadView('Service/Infirmary')
+      }, {
+        path: 'user',
+        component: loadView('Service/User')
+      }]
+    }, {
+      path: '/ours',
+      component: loadView('Ours', true),
+      redirect: '/ours/introduction',
+      children: [{
+        path: 'introduction',
+        component: loadView('Ours/Introduction')
+      }, {
+        path: 'news',
+        component: loadView('Ours/News')
+      }, {
+        path: 'news/:id',
+        component: loadView('Ours/NewsDetails')
+      }, {
+        path: 'jobs',
+        component: loadView('Ours/Jobs')
+      }, {
+        path: 'cooperation',
+        component: loadView('Ours/Cooperation')
+      }, {
+        path: 'share',
+        component: loadView('Ours/Share')
+      }, {
+        path: 'friends',
+        component: loadView('Ours/Friends')
+      }, {
+        path: 'contact',
+        component: loadView('Ours/Contact')
+      }]
+    }, , {
+      path: '/user',
+      component: loadView('User', true),
+      children: []
+    }
+  ]
+})
