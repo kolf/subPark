@@ -35,7 +35,7 @@ export default new Router({
     }, {
       path: '/booking',
       component: loadView('Booking', true),
-      redirect: '/booking/entrance',
+      redirect: '/booking/entrance?s=1',
       children: [{
         path: 'entrance',
         component: loadView('Booking/Entrance')
@@ -59,6 +59,9 @@ export default new Router({
       }, {
         path: 'projects',
         component: loadView('Activity/Projects')
+      }, {
+        path: ':type/:id',
+        component: loadView('Activity/News.details')
       }]
     }, {
       path: '/service',
@@ -113,7 +116,7 @@ export default new Router({
         component: loadView('Ours/News')
       }, {
         path: 'news/:id',
-        component: loadView('Ours/NewsDetails')
+        component: loadView('Ours/News.details')
       }, {
         path: 'jobs',
         component: loadView('Ours/Jobs')

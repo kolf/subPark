@@ -1,0 +1,54 @@
+<template>
+    <div>
+        <div class="page-header">
+            <h2 class="page-title font-400 pad-bottom-10">人才招聘
+                <small>TALENT RECRUITMENT</small>
+            </h2>
+        </div>
+        <div class="pad-top-40">
+            <dl class="dl-list">
+                <template v-for="(item, index) in jobs">
+                    <dt class="col-1">
+                        <i class="icon-dt"></i>
+                    </dt>
+                    <dd>
+                        <p class="fs-4">招聘： {{item.jobName}}</p>
+                        <p>招聘人数：{{item.jobNum}}人</p>
+                        <p v-html="item.jobCondition"></p>
+                    </dd>
+                </template>
+            </dl>
+        </div>
+    </div>
+</template>
+
+<script>
+import api from '@/api'
+export default {
+    data() {
+        return {
+            jobs: []
+        }
+    },
+    methods: {
+        queryJobs() {
+            api.queryJobs().then(res => {
+                const { code, object, msg } = res.data
+                if (code != 0) {
+                    console.error(msg)
+                    return false
+                }
+
+                this.jobs = object.webOursJobList
+            })
+        }
+    },
+    async mounted() {
+        this.queryJobs()
+    }
+}
+</script>
+
+<style scoped>
+
+</style>

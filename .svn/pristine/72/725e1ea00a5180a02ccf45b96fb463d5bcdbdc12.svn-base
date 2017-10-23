@@ -1,0 +1,164 @@
+<template>
+    <div>
+        <div class="raiders-container" :style="'height:'+ slideHeight+ 'px'">
+            <div class="container relative" :style="'height:'+ slideHeight+ 'px'">
+                <span v-for="(item, index) in pos" class="pos" :style="'left:'+item.left+';top:'+item.top">{{item.name}}</span>
+            </div>
+        </div>
+        <div class="main">
+            <div class="container">
+                <div class="nav-btns text-center pad-top-40 pad-bottom-40">
+                    <router-link class="button" :to="{path: '/raiders/openTime', query: {s: 1}}">开闭园时间</router-link>
+                    <router-link class="button" :to="{path: '/raiders/recommend', query: {s: 1}}">线路推荐</router-link>
+                    <router-link class="button active" :to="{path: '/raiders/attractions', query: {s: 1}}">景点分布</router-link>
+                    <router-link class="button" :to="{path: '/raiders/traffic', query: {s: 1}}">园内交通</router-link>
+                    <router-link class="button" :to="{path: '/raiders/stalls', query: {s: 1}}">摊位分布</router-link>
+                </div>
+                <ul class="imgtext-list row list-unstyled text-center">
+                    <li class="col-1-2 col-1-4-m" v-for="(item, index) in gallerys">
+                        <div>
+                            <div class="transition img-transition">
+                                <img @click="openGallery(index)" :src="item.src" :alt="item.title" class="img-fluid">
+                            </div>
+
+                            <p class="pad-top-10">{{item.title}}</p>
+                        </div>
+                    </li>
+                </ul>
+                <lightbox :title="gallerys[galleryIndex].title" :desc="gallerys[galleryIndex].desc" :images="gallerys[galleryIndex].images" ref="lightbox" :siteLoading="loadingImg" :show-caption="true" :nThumbs="nThumbs"></lightbox>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import { data as gallerys } from '@/data/attractions'
+import Lightbox from '@/components/Lightbox'
+import { mapActions, mapGetters } from 'vuex'
+// import loadingImg from '@/assets/siteloading.gif'
+
+export default {
+    components: {
+        Lightbox
+    },
+    data() {
+        return {
+            galleryIndex: 0,
+            gallerys,
+            loadingImg: require('static/loading.gif'),
+            pos: [{
+                left: '0',
+                top: '50%',
+                name: '生态水溪'
+            }, {
+                left: '10%',
+                top: '20%',
+                name: '生态水溪'
+            }, {
+                left: '20%',
+                top: '30%',
+                name: '生态水溪'
+            }, {
+                left: '30%',
+                top: '40%',
+                name: '生态水溪'
+            },{
+                left: '40%',
+                top: '50%',
+                name: '生态水溪'
+            }, {
+                left: '50%',
+                top: '60%',
+                name: '生态水溪'
+            }, {
+                left: '60%',
+                top: '7%',
+                name: '生态水溪'
+            }, {
+                left: '70%',
+                top: '40%',
+                name: '生态水溪'
+            },{
+                left: '80%',
+                top: '80%',
+                name: '生态水溪'
+            }, {
+                left: '90%',
+                top: '70%',
+                name: '生态水溪'
+            }, {
+                left: '40%',
+                top: '20%',
+                name: '生态水溪'
+            }, {
+                left: '10%',
+                top: '10%',
+                name: '生态水溪'
+            }, {
+                left: '10%',
+                top: '80%',
+                name: '生态水溪'
+            }]
+        }
+    },
+    methods: {
+        openGallery(index) {
+            // console.log(this.gallery)
+            this.galleryIndex = index
+            this.$refs.lightbox.showImage(index)
+        }
+    },
+    computed: {
+        ...mapGetters({
+            device: 'device',
+        }),
+        nThumbs() {
+            return this.device.isMobile ? 3 : 6
+        },
+        slideHeight() {
+            return this.device.isMobile ? window.innerWidth : this.device.height - 62
+        }
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+.imgtext-list {
+    margin-left: -10px;
+    margin-right: -10px;
+    [class^=col] {
+        padding: 10px;
+    }
+    img {
+        width: 100%
+    }
+}
+
+.pos {
+    position: absolute;
+    padding: 1px 20px;
+    background: rgba(255, 255, 255, .8);
+    font-size: 12px;
+    border-radius: 12px;
+    &::after,
+    &::before {
+        content: '';
+        position: absolute;
+    }
+    &::after {
+        right: 14px;
+        top: 22px;
+        width: 1px;
+        height: 24px;
+        background: rgba(255, 255, 255, .8);
+    }
+    &::before {
+        right: 12px;
+        top: 46px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, .8);
+    }
+}
+</style>

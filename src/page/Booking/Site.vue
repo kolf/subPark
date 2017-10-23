@@ -5,29 +5,78 @@
                 <div class="col-4 project-title pad-left-10">
                     <div class="text-table">
                         <div class="text-table-cell">
-                            场地预订
-                            <small class="none block-l pad-top-20">场地预订场地预订场地预订场地预订场地预订场地预订场地预订场地预订场地预订场地预订场地预订场地预订场地预订场地预订场地预订</small>
+                            {{item.siteName}}
+                            <small class="none block-l pad-top-20">{{item.siteIntro}}</small>
                         </div>
                     </div>
                 </div>
                 <div class="col-8 push-4">
-                    <span class="img-transition block"><img src="../../assets/n1.png" alt="" class="project-thumb"></span>
+                    <div class="project-img" :style="'background-image:url('+item.siteImg+')'"></div>
                 </div>
             </div>
         </a>
+        <infinite-loading @infinite="queryList">
+            <span slot="no-more">
+                没有更多了:)
+            </span>
+        </infinite-loading>
     </div>
 </template>
 
+
 <script>
+import api from '@/api'
+import {prefixUrl} from '@/utils/filters'
+import InfiniteLoading from 'vue-infinite-loading'
+
 export default {
+    components: {
+        InfiniteLoading
+    },
     data() {
         return {
-            list: [1, 2, 3, 4, 5]
+            list: [],
+            pageNum: 1
+        }
+    },    
+    async mounted() {
+        // this.queryList()
+    },
+    methods: {
+        queryList($state){
+            api.queryBookingSite(this.pageNum, 1).then(res => {
+                const {code, msg, object} = res.data
+                if(code!=0){
+                    console.error(msg)
+                    $state.complete()
+                    return
+                }
+                
+                const newList = object.webBookingSiteList.map(item => {
+                    item.siteImg = prefixUrl(item.siteImg)
+                    return item
+                })
+
+                if(newList.length){
+                    this.list = this.list.concat(newList)
+                    this.pageNum++
+                    $state.loaded()
+                }else{
+                    $state.complete()
+                }
+            })
         }
     }
 }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+.project{
+    &-img{
+        padding-top:45%;
+        background-color: #ccc;
+        background-position: center;
+        background-size: 100% auto;
+    }
+}
 </style>

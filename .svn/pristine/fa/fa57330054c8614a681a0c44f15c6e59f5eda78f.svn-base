@@ -1,0 +1,183 @@
+<template>
+    <div>
+        <div class="raiders-container" :style="'height:'+ slideHeight+ 'px'">
+            <div class="container">
+
+            </div>
+            <div class="mapbar">
+                <div class="container">
+                    <div class="mapbar-btns">
+                        <button :class="{'active': curMapKey===item.id}" v-for="(item, index) in maps" :key="item.id" @click="curMapKey=item.id">{{item.name}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="container">
+                <div class="nav-btns text-center pad-top-40 pad-bottom-40">
+                    <router-link class="button" :to="{path: '/raiders/openTime', query: {s: 1}}">开闭园时间</router-link>
+                    <router-link class="button active" :to="{path: '/raiders/recommend', query: {s: 1}}">线路推荐</router-link>
+                    <router-link class="button" :to="{path: '/raiders/attractions', query: {s: 1}}">景点分布</router-link>
+                    <router-link class="button" :to="{path: '/raiders/traffic', query: {s: 1}}">园内交通</router-link>
+                    <router-link class="button" :to="{path: '/raiders/stalls', query: {s: 1}}">摊位分布</router-link>
+                </div>
+                <bus-routes :routes="curMap"></bus-routes>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import BusRoutes from '@/components/BusRoutes'
+import { mapActions, mapGetters } from 'vuex'
+
+export default {
+    data() {
+        return {
+            maps: [{
+                name: '赏花线路',
+                id: 1,
+                map: [{
+                    name: '融合广场'
+                }, {
+                    name: '公园南门'
+                }, {
+                    name: '世纪喷泉广场',
+                    active: true
+                }, {
+                    name: '生态水溪'
+                }, {
+                    name: '生命之源'
+                }, {
+                    name: '北湖',
+                    active: true
+                }, {
+                    name: '荷花湖',
+                    active: true
+                }, {
+                    name: '滨水之舟'
+                }, {
+                    name: '中心岛剧场',
+                    active: true
+                }, {
+                    name: '和平墙'
+                }, {
+                    name: '中泰友谊亭'
+                }, {
+                    name: '滨水之舟'
+                }, {
+                    name: '北湖',
+                    active: true
+                }, {
+                    name: '世纪喷泉广场'
+                }, {
+                    name: '荷花湖'
+                }, {
+                    name: '和平墙'
+                }]
+            }, {
+                name: '健身线路',
+                id: 2,
+                map: [{
+                    name: '融合广场'
+                }, {
+                    name: '和平墙'
+                }, {
+                    name: '中泰友谊亭'
+                }, {
+                    name: '滨水之舟'
+                }, {
+                    name: '北湖',
+                    active: true
+                }, {
+                    name: '世纪喷泉广场'
+                }, {
+                    name: '荷花湖'
+                }, {
+                    name: '和平墙'
+                }, {
+                    name: '公园南门'
+                }, {
+                    name: '世纪喷泉广场',
+                    active: true
+                }, {
+                    name: '生态水溪'
+                }, {
+                    name: '生命之源'
+                }, {
+                    name: '北湖',
+                    active: true
+                }, {
+                    name: '荷花湖',
+                    active: true
+                }, {
+                    name: '滨水之舟'
+                }, {
+                    name: '中心岛剧场',
+                    active: true
+                }]
+            }, {
+                name: '游乐线路',
+                id: 3,
+                map: [{
+                    name: '融合广场'
+                }, {
+                    name: '滨水之舟'
+                }, {
+                    name: '中心岛剧场',
+                    active: true
+                }, {
+                    name: '和平墙'
+                }, {
+                    name: '中泰友谊亭'
+                }, {
+                    name: '滨水之舟'
+                }, {
+                    name: '北湖',
+                    active: true
+                }, {
+                    name: '世纪喷泉广场'
+                }, {
+                    name: '荷花湖'
+                }, {
+                    name: '公园南门'
+                }, {
+                    name: '世纪喷泉广场',
+                    active: true
+                }, {
+                    name: '生态水溪'
+                }, {
+                    name: '生命之源'
+                }, {
+                    name: '北湖',
+                    active: true
+                }, {
+                    name: '荷花湖',
+                    active: true
+                }, {
+                    name: '和平墙'
+                }]
+            }],
+            curMapKey: 1
+        }
+    },
+    components: {
+        BusRoutes
+    },
+    computed: {
+        ...mapGetters({
+            device: 'device',
+        }),
+        slideHeight() {
+            return this.device.isMobile ? window.innerWidth : this.device.height - 62
+        },
+        curMap() {
+            return this.maps.find(map => map.id === this.curMapKey).map
+        }
+    },
+}
+</script>
+
+<style scoped>
+
+</style>

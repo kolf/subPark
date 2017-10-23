@@ -1,9 +1,0 @@
-import * as type from './mutation-types'
-
-const mutations = {
-    [type.CHANGE_MENU](state, menu) {
-        console.log(state, menu)
-    }
-}
-
-export default mutations

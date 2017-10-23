@@ -1,0 +1,154 @@
+<template>
+    <div>
+        <div class="raiders-container" :style="'height:'+ slideHeight+ 'px'">
+            <div class="container relative" :style="'height:'+ slideHeight+ 'px'">
+                <span v-for="(item, index) in curPos" class="pos" :style="'left:'+item.left+';top:'+item.top">{{item.name}}</span>
+            </div>
+            <div class="mapbar">
+                <div class="container">
+                    <div class="mapbar-btns">
+                        <button :class="{'active': curKey===item.id}" v-for="(item, index) in btns" :key="item.id" @click="curKey=item.id">{{item.name}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="container">
+                <div class="nav-btns text-center pad-top-40 pad-bottom-40">
+                    <router-link class="button" :to="{path: '/raiders/openTime', query: {s: 1}}">开闭园时间</router-link>
+                    <router-link class="button" :to="{path: '/raiders/recommend', query: {s: 1}}">线路推荐</router-link>
+                    <router-link class="button" :to="{path: '/raiders/attractions', query: {s: 1}}">景点分布</router-link>
+                    <router-link class="button" :to="{path: '/raiders/traffic', query: {s: 1}}">园内交通</router-link>
+                    <router-link class="button active" :to="{path: '/raiders/stalls', query: {s: 1}}">摊位分布</router-link>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import { mapActions, mapGetters } from 'vuex'
+
+const pos = [{
+    left: '0',
+    top: '50%',
+    name: '生态水溪',
+    type: 1
+}, {
+    left: '10%',
+    top: '20%',
+    name: '生态水溪',
+    type: 2
+}, {
+    left: '20%',
+    top: '30%',
+    name: '生态水溪',
+    type: 1
+}, {
+    left: '30%',
+    top: '40%',
+    name: '生态水溪',
+    type: 2
+}, {
+    left: '40%',
+    top: '50%',
+    name: '生态水溪',
+    type: 1
+}, {
+    left: '50%',
+    top: '60%',
+    name: '生态水溪',
+    type: 2
+}, {
+    left: '60%',
+    top: '7%',
+    name: '生态水溪',
+    type: 1
+}, {
+    left: '70%',
+    top: '40%',
+    name: '生态水溪',
+    type: 2
+}, {
+    left: '80%',
+    top: '80%',
+    name: '生态水溪',
+    type: 1
+}, {
+    left: '90%',
+    top: '70%',
+    name: '生态水溪',
+    type: 2
+}, {
+    left: '40%',
+    top: '20%',
+    name: '生态水溪',
+    type: 1
+}, {
+    left: '10%',
+    top: '10%',
+    name: '生态水溪',
+    type: 2
+}, {
+    left: '10%',
+    top: '80%',
+    name: '生态水溪',
+    type: 1
+}]
+
+export default {
+    data() {
+        return {
+            curKey: 1,
+            btns: [{
+                name: '美食摊位分布',
+                id: 1
+            }, {
+                name: '商卖亭分布',
+                id: 2
+            }]
+        }
+    },
+    computed: {
+        ...mapGetters({
+            device: 'device',
+        }),
+        slideHeight() {
+            return this.device.isMobile ? window.innerWidth : this.device.height - 62
+        },
+        curPos() {
+            return pos.filter(item => item.type == this.curKey)
+        }
+    },
+}
+</script>
+
+<style lang="scss" scoped>
+.pos {
+    position: absolute;
+    padding: 1px 20px;
+    background: rgba(255, 255, 255, .8);
+    font-size: 12px;
+    border-radius: 12px;
+    &::after,
+    &::before {
+        content: '';
+        position: absolute;
+    }
+    &::after {
+        right: 14px;
+        top: 22px;
+        width: 1px;
+        height: 24px;
+        background: rgba(255, 255, 255, .8);
+    }
+    &::before {
+        right: 12px;
+        top: 46px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, .8);
+    }
+}
+</style>

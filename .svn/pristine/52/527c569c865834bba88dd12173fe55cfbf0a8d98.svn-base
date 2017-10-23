@@ -1,0 +1,94 @@
+<template>
+    <div class="main pad-top-40">
+        <div class="container">
+            <div class="page-header">
+                <h2 class="page-title font-400 pad-bottom-10">游客建议
+                    <small>VISITOR SUGGESTIONS</small>
+                </h2>
+            </div>
+            <div class="pad-top-40">
+                <div class="row">
+                    <div class="col-10-l push-1-l">
+                        <dl class="dl-list">
+                            <dt class="col-1">
+                                <i class="icon-dt"></i>
+                            </dt>
+                            <dd>
+                                <h5>开园时间是什么时候截止呢？</h5>
+                                <p class="gap-b-0">夏季：4月1日-10月31日 开园：6:00，止票：21:00，静园：22:00, 冬季：11月1日-3月31日开园：6:00，止票：20:00，静园：21:00</p>
+                            </dd>
+                            <dt class="col-1">
+                                <i class="icon-dt"></i>
+                            </dt>
+                            <dd>
+                                <h5>开园时间是什么时候截止呢？</h5>
+                                <p class="gap-b-0">夏季：4月1日-10月31日 开园：6:00，止票：21:00，静园：22:00, 冬季：11月1日-3月31日开园：6:00，止票：20:00，静园：21:00</p>
+                            </dd>
+                            <dt class="col-1">
+                                <i class="icon-dt"></i>
+                            </dt>
+                            <dd>
+                                <h5>开园时间是什么时候截止呢？</h5>
+                                <p class="gap-b-0">夏季：4月1日-10月31日 开园：6:00，止票：21:00，静园：22:00, 冬季：11月1日-3月31日开园：6:00，止票：20:00，静园：21:00</p>
+                            </dd>
+
+                        </dl>
+                        <div class="text-center pad-top-40">
+                            <button class="button" @click="showCommit">我要提问</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <modal height="auto" :scrollable="true" name="commit">
+            <commit-form actions="help" @close="hideCommit"></commit-form>
+        </modal>
+    </div>
+</template>
+
+<script>
+import api from '@/api'
+import CommitForm from '@/components/CommitForm'
+
+export default {
+    components: {
+        CommitForm
+    },
+    data() {
+        return {
+            
+        }
+    },
+    methods: {
+        showCommit () {
+            this.$modal.show('commit');
+        },
+        hideCommit () {
+            this.$modal.hide('commit');
+        }
+    }
+}
+</script>
+
+<style scoped lang="scss">
+.help-from{
+    margin-top: 60px;
+    padding:30px;
+    border-radius: 4px;
+   box-shadow: 1px 2px 6px 0px #ccc;
+}
+.field {
+    &-group {
+        padding-bottom: 10px;
+    }
+}
+
+.submit{
+    &-btn{
+        background: #fff;
+        font-size: 20px;
+        padding: 12px 80px;
+        border-radius: 4px;
+    }
+}
+</style>

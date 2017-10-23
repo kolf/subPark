@@ -1,0 +1,77 @@
+<template>
+    <div>
+        <div class="banner-section">
+        </div>
+        <div class="main">
+            <div class="container">
+                <div class="nav-btns text-center pad-top-40 pad-bottom-40">
+                    <router-link class="button" :to="{path: '/raiders/openTime', query: {s: 1}}">开闭园时间</router-link>
+                    <router-link class="button" :to="{path: '/raiders/recommend', query: {s: 1}}">线路推荐</router-link>
+                    <router-link class="button active" :to="{path: '/raiders/attractions', query: {s: 1}}">景点分布</router-link>
+                    <router-link class="button" :to="{path: '/raiders/traffic', query: {s: 1}}">园内交通</router-link>
+                    <router-link class="button" :to="{path: '/raiders/stalls', query: {s: 1}}">摊位分布</router-link>
+                </div>
+                <ul class="imgtext-list row list-unstyled text-center">
+                    <li class="col-1-2 col-1-4-m" v-for="(item, index) in gallerys">
+                        <div>
+                            <div class="transition img-transition">
+                                <img @click="openGallery(index)" :src="item.src" :alt="item.title" class="img-fluid">
+                            </div>
+
+                            <p class="pad-top-10">{{item.title}}</p>
+                        </div>
+                    </li>
+                </ul>
+                <lightbox :title="gallerys[galleryIndex].title" :desc="gallerys[galleryIndex].desc" :images="gallerys[galleryIndex].images" ref="lightbox" :siteLoading="loadingImg" :show-caption="true" :nThumbs="nThumbs"></lightbox>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import { data as gallerys } from '@/data/attractions'
+import Lightbox from '@/components/Lightbox'
+import { mapActions, mapGetters } from 'vuex'
+// import loadingImg from '@/assets/siteloading.gif'
+
+export default {
+    components: {
+        Lightbox
+    },
+    data() {
+        return {
+            galleryIndex: 0,
+            gallerys,
+            loadingImg: require('static/loading.gif')
+        }
+    },
+    methods: {
+        openGallery(index) {
+            console.log(this.gallery)
+            this.galleryIndex = index
+            this.$refs.lightbox.showImage(index)
+        }
+    },
+    computed: {
+        ...mapGetters({
+            device: 'device',
+        }),
+        nThumbs() {
+            return this.device.isMobile ? 3 : 6
+        }
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+.imgtext-list {
+    margin-left: -10px;
+    margin-right: -10px;
+    [class^=col] {
+        padding: 10px
+    }
+    img {
+        width: 100%
+    }
+}
+</style>

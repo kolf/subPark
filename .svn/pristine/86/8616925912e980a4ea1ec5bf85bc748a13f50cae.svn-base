@@ -1,0 +1,71 @@
+<template>
+    <div>
+        <div class="page-header">
+            <h2 class="page-title font-400 pad-bottom-20">全年固定活动
+                <small>Activity News</small>
+            </h2>
+        </div>
+       <div class="project-list">
+            <router-link :to="'/activity/projects/' + item.activityId" class="project" v-for="(item, index) in list">
+                <div class="row">
+                    <div class="col-4 project-title pad-left-10">
+                        <div class="text-table">
+                            <div class="text-table-cell">
+                                {{item.activityName}}
+                                <small class="none block-l pad-top-20">{{item.activityContent}}</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-8 push-4">
+                        <div class="project-img" :style="'background-image:url('+item.activityLogo+')'"></div>
+                    </div>
+                </div>
+            </router-link>
+        </div>
+    </div>
+</template>
+
+
+<script>
+import api from '@/api'
+import {prefixUrl} from '@/utils/filters'
+export default {
+    data() {
+        return {
+            list: [],
+            pageNum: 1
+        }
+    },    
+    async mounted() {
+        this.queryList()
+    },
+    methods: {
+        queryList(){
+            api.queryActivity(this.pageNum, 2).then(res => {
+                const {code, msg, object} = res.data
+                if(code!=0){
+                    console.error(msg)
+                    return
+                }
+
+                this.list = object.webActivityNewList.map(item => {
+                    item.activityLogo = prefixUrl(item.activityLogo)
+                    return item
+                })
+                console.log(res)
+            })
+        }
+    }
+}
+</script>
+
+<style scoped lang="scss">
+.project{
+    &-img{
+        padding-top:45%;
+        background-color: #ccc;
+        background-position: center;
+        background-size: 100% auto;
+    }
+}
+</style>

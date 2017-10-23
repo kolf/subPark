@@ -1,0 +1,61 @@
+<template>
+    <div>
+        <div class="banner-section"></div>
+
+        <div class="main">
+            <div class="container">
+                <dl class="dl-list pad-top-40">
+
+            <template v-for="(item, index) in locations">
+                <dt class="col-1">
+                <i class="icon-dt"></i>
+            </dt>
+            <dd>
+                <p class="fs-4">{{item.locationName}}</p>
+                <p v-html="$options.filters.formatText(item.locationContent)"></p>
+            </dd>
+            </template>
+        </dl>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import api from '@/api'
+export default {
+    data(){
+        return {
+            locations: []
+        }
+    },
+    methods: {
+        query(){
+            api.getLocations().then(res => {
+                const {code, msg, object} = res.data
+                if(code!=0){
+                    console.error(msg)
+                    return false
+                }
+
+                this.locations = object.webServiceLocationList
+            })
+        }
+    },
+    async mounted(){
+        // console.log(this.filters)
+        this.query()
+    }
+}
+</script>
+
+<style scoped lang="scss">
+.banner {
+    &-section {
+        height: 800px;
+        background: #333 url(/static/banner.png) no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+}
+</style>
