@@ -1,12 +1,12 @@
 <template>
     <div>
         <div class="page-header">
-            <h2 class="page-title font-400 pad-bottom-20">活动资讯
+            <h2 class="page-title font-400 pad-bottom-20">全年固定活动
                 <small>Activity News</small>
             </h2>
         </div>
-        <div class="project-list">
-            <router-link :to="'/activity/news/' + item.activityId" class="project" v-for="(item, index) in list">
+       <div class="project-list">
+            <router-link :to="'/activity/projects/' + item.activityId" class="project" v-for="(item, index) in list">
                 <div class="row">
                     <div class="col-4 project-title pad-left-10">
                         <div class="text-table">
@@ -21,8 +21,8 @@
                     </div>
                 </div>
             </router-link>
-            <infinite-loading @infinite="queryList">
-                <span slot="no-more" class="no-more">
+                        <infinite-loading @infinite="queryList">
+                <span slot="no-more">
                     没有更多了:)
                 </span>
             </infinite-loading>
@@ -30,11 +30,11 @@
     </div>
 </template>
 
+
 <script>
 import api from '@/api'
 import {prefixUrl} from '@/utils/filters'
 import InfiniteLoading from 'vue-infinite-loading'
-
 export default {
     components: {
         InfiniteLoading

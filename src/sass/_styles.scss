@@ -1,6 +1,11 @@
 // var
 $primary: #168c74;
 
+*{
+    &:focus{
+        outline: none
+    }
+}
 // iconfont
 body{
     color: #666
@@ -29,6 +34,11 @@ button{
     &-b{
         &-0{
             margin-bottom: 0
+        }
+    }
+    &-r{
+        &-5{
+            margin-right: 5px
         }
     }
 }
@@ -81,6 +91,7 @@ button{
         padding: 15px 40px;
         background-color: #fff;
         font-size: 20px;
+        border-radius: 3px;
     }
 }
 
@@ -233,4 +244,51 @@ button{
             max-height: 400px;
         }
     }
+}
+
+.pager{
+    display: inline-block;
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 3px;
+    &>li{
+        display: inline;
+        &:first-child{
+            &>a{
+                margin-left: 0;
+                border-top-left-radius: 3px;
+                border-bottom-left-radius: 3px;
+            }
+        }        
+        &:first-child{
+            &>a{
+                border-top-right-radius: 3px;
+                border-bottom-right-radius: 3px;
+            }
+        }
+        &.active{
+            &>a{
+                z-index: 3;
+                color: #fff;
+                cursor: default;
+                background-color: $primary;
+                border-color: $primary;
+            }
+        }
+        &>a{
+            position: relative;
+            float: left;
+            padding: 6px 12px;
+            margin-left: -1px;
+            line-height: 1.42857143;
+            // color: $primary;
+            text-decoration: none;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+    }
+}
+.no-more{
+    text-align: center;
+    padding: 20px 0
 }

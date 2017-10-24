@@ -22,7 +22,7 @@
                 </div>
             </router-link>
             <infinite-loading @infinite="queryList">
-                <span slot="no-more" class="no-more">
+                <span slot="no-more">
                     没有更多了:)
                 </span>
             </infinite-loading>

@@ -1,7 +1,7 @@
 <template>
 	<div class="home-page">
-		<slider class="slider" :arrows="true" :infinite="true" :autoplay="true" v-if="slideHeight && slides.length">
-			<div class="slide" v-for="(item, index) in slides" :style="'background-image:url('+item.url+');height:'+slideHeight+'px'"></div>
+		<slider class="slider" :arrows="true" :infinite="true" :autoplay="true" v-if="slideHeight">
+			<div class="slide" v-for="(item, index) in slides" :style="'background-image:url('+item+');height:'+slideHeight+'px'"></div>
 		</slider>
 		<div class="summary-section">
 			<div class="container">
@@ -36,24 +36,64 @@
 		<div class="feature-scetion pad-top-20 pad-top-60-m">
 			<div class="container">
 				<div class="row pad-top-30 pad-bottom-30">
-					<div class="col-12 col-1-2-l" v-for="(item, index) in masterProject">
+					<div class="col-12 col-1-2-l">
 						<a class="feature">
 							<div class="feature-image img-transition">
-								<img :src="item.activityLogo" class="img-fluid" :alt="item.activityName">
+								<img src="/static/1.png" class="img-fluid" alt="">
 							</div>
-							<h2 class="feature-title pad-top-5 pad-bottom-5-m">{{item.activityName}}</h2>
+							<h2 class="feature-title pad-top-5 pad-bottom-5-m">Cavalia舞马</h2>
+							<a href="">
+								<i class="iconfont icon-icon"></i>了解更多</a>
+						</a>
+					</div>
+					<div class="col-12 col-1-2-l">
+						<a class="feature">
+							<div class="feature-image img-transition">
+								<img src="/static/2.png" class="img-fluid" alt="">
+							</div>
+							<h2 class="feature-title pad-top-5 pad-bottom-5-m">神盾局</h2>
 							<a href="">
 								<i class="iconfont icon-icon"></i>了解更多</a>
 						</a>
 					</div>
 				</div>
 				<div class="row pad-bottom-30">
-					<div class="col-1-2 col-1-4-m" v-for="(item, index) in secondaryProject">
+					<div class="col-1-2 col-1-4-m">
 						<a class="feature">
 							<div class="feature-image img-transition">
-								<img :src="item.activityLogo" class="img-fluid" :alt="item.activityName">
+								<img src="/static/3.png" class="img-fluid" alt="">
 							</div>
-							<h3 class="feature-title pad-top-5 pad-bottom-5-m">{{item.activityName}}</h3>
+							<h3 class="feature-title pad-top-5 pad-bottom-5-m">迪尼斯乐队表演</h3>
+							<a href="">
+								<i class="iconfont icon-icon"></i>了解更多</a>
+						</a>
+					</div>
+					<div class="col-1-2 col-1-4-m">
+						<a class="feature">
+							<div class="feature-image img-transition">
+								<img src="/static/4.png" class="img-fluid" alt="">
+							</div>
+							<h3 class="feature-title pad-top-5 pad-bottom-5-m">朝阳公园大马戏</h3>
+							<a href="">
+								<i class="iconfont icon-icon"></i>了解更多</a>
+						</a>
+					</div>
+					<div class="col-1-2 col-1-4-m">
+						<a class="feature">
+							<div class="feature-image img-transition">
+								<img src="/static/5.png" class="img-fluid" alt="">
+							</div>
+							<h3 class="feature-title pad-top-5 pad-bottom-5-m">朝阳公园掠影</h3>
+							<a href="">
+								<i class="iconfont icon-icon"></i>了解更多</a>
+						</a>
+					</div>
+					<div class="col-1-2 col-1-4-m">
+						<a class="feature">
+							<div class="feature-image img-transition">
+								<img src="/static/6.png" class="img-fluid" alt="">
+							</div>
+							<h3 class="feature-title pad-top-5 pad-bottom-5-m">朝阳规划艺术馆</h3>
 							<a href="">
 								<i class="iconfont icon-icon"></i>了解更多</a>
 						</a>
@@ -65,17 +105,18 @@
 </template>
 
 <script>
-import api from '@/api'
 import Agile from '@/components/Agile'
 import { mapActions, mapGetters } from 'vuex'
-import {prefixUrl} from '@/utils/filters'
 
 export default {
 	name: 'index',
 	data() {
 		return {
-			slides: [],
-			projects: []
+			slides: [
+				require('static/b1.jpg'),
+				require('static/b2.jpg'),
+				require('static/b3.jpg')
+			]
 		}
 	},
 	components: {
@@ -87,47 +128,11 @@ export default {
 		}),
 		slideHeight(){
 			return this.device.isMobile ? window.innerWidth : this.device.height - 62
-		},
-		masterProject(){
-			return this.projects.slice(0,2)
-		},
-		secondaryProject(){
-			return this.projects.slice(2, 6)
 		}
-	},
-	async mounted(){
-		this.queryBanner()
-		this.queryHomeProject()
 	},
 	methods: {
 		queryBanner(){
-			api.queryBanner().then(res => {
-				const {code, msg, object} = res.data
-				if(code!=0){
-					console.error(msg)
-					return
-				}
-
-				console.log(object)
-				this.slides = object.webHomeBannerList.map(item => ({
-					url: prefixUrl(item.bannerImg)
-				}))
-			})
-		},
-		queryHomeProject(){
-			api.queryHomeProject().then(res => {
-				const {code, msg, object} = res.data
-				if(code!=0){
-					console.error(msg)
-					return
-				}
-
-				this.projects = object.webActivityNewList.map(item => {
-					item.activityLogo = prefixUrl(item.activityLogo)
-					return item
-				})
-				console.log(object)
-			})
+			
 		}
 	}
 }

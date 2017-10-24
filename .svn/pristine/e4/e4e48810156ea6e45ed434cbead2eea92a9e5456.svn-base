@@ -14,10 +14,8 @@ export default {
     getContact() {
         return axios.post(API_ROOT + 'read/ours/contact/list')
     },
-    queryNews(pgaeNum) {
-        return axios.post(API_ROOT + 'read/ours/news', qs.stringify({
-            pager: pgaeNum
-        }))
+    queryNews() {
+        return axios.post(API_ROOT + 'read/ours/news')
     },
     getNews(id) {
         return axios.post(API_ROOT + 'read/ours/news/info', qs.stringify({

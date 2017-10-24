@@ -3,7 +3,7 @@
         <div class="page-header">
             <div class="row">
                 <div class="col-4 pad-top-15">
-                    <v-select :options="dateOptions" class="page-header__select" placeholder="更多资讯" @change="queryNews" :value="dateVal"></v-select>
+                    <v-select :options="dateOptions" class="page-header__select" placeholder="更多资讯" @change="queryList" :value="dateVal"></v-select>
                 </div>
                 <div class="col-4 text-center">
                     <h2 class="page-title font-400 pad-bottom-10">新闻公告
@@ -13,7 +13,7 @@
             </div>
         </div>
         <ul class="imgtext-list list-unstyled">
-            <li class="row" v-for="(item, index) in news">
+            <li class="row" v-for="(item, index) in list">
                 <div class="col-3-m pad-bottom-10">
                     <router-link :to="'/ours/news/' + item.newsId" class="img-transition block">
                         <img :src="item.newsLogo | prefixUrl" class="img-fluid" :alt="item.newsName">
@@ -27,6 +27,11 @@
                     <p class="date pad-top-20">{{item.newsDate}}</p>
                 </div>
             </li>
+            <infinite-loading @infinite="queryList">
+                <span slot="no-more">
+                    没有更多了:)
+                </span>
+            </infinite-loading>
         </ul>
     </div>
 </template>
@@ -34,15 +39,18 @@
 <script>
 import {prefixUrl} from '@/utils/filters'
 import Select from '@/components/Select'
+import InfiniteLoading from 'vue-infinite-loading'
 import api from '@/api'
 
 export default {
     components: {
-        VSelect: Select
+        VSelect: Select,
+        InfiniteLoading
     },
     data() {
         return {
-            news: [],
+            list: [],
+            pageNum: 1,
             dateOptions: [{
                 label: '2017年1月-3月',
                 value: 1
@@ -69,15 +77,24 @@ export default {
         }
     },
     methods: {
-        queryNews(val) {
-            api.queryNews().then(res => {
+        queryList($state, val) {
+            api.queryNews(this.pageNum).then(res => {
                 const { msg, code, object } = res.data
                 if (code != 0) {
                     console.error(msg)
+                    $state.complete()
                     return
                 }
                 // console.log(prefixUrl)
-                this.news = object.webOursNewList
+                const newList = object.webOursNewList
+
+                if(newList.length){
+                    this.list = this.list.concat(newList)
+                    this.pageNum++
+                    $state.loaded()
+                }else{
+                    $state.complete()
+                }
             })
         }
     },
@@ -88,7 +105,7 @@ export default {
         prefixUrl
     },
     async mounted() {
-        this.queryNews()
+        // this.queryList()
     }
 }
 </script>
